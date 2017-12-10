@@ -5,6 +5,7 @@ Module=Initialization; bas\Initialization.bas
 Module=api; bas\api.bas
 Module=LetBallMove; bas\LetBallMove.bas
 Module=OneFrameEvents; bas\OneFrameEvents.bas
+Module=SliderPlayer; bas\SliderPlayer.bas
 IconForm="Form_Main"
 Startup="Form_Main"
 HelpFile=""
