@@ -46,8 +46,8 @@ Public Function MoveBalls(Things As Object, X As Integer, Y As Integer) As Strin
     If SliderState(1).X <= X And SliderState(1).X + SliderState(1).W >= X Then Collision (1) Else Failed 'downout
   End If
  
-  If BallState.vX < 1 Then BallState.vX = (BallState.vX + 10) * 1.5
-  If BallState.vY < 1 Then BallState.vY = (BallState.vY + 10) * 1.5
+  'If BallState.vX < 1 Then BallState.vX = (BallState.vX + 10) * 1.5
+  'If BallState.vY < 1 Then BallState.vY = (BallState.vY + 10) * 1.5
   If Not (Coll) Then MoveBalls = ""
 End Function
 
