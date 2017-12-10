@@ -14,6 +14,17 @@ Public GamePlaceHeight As Integer
 Public Ball As Object
 Public BallR As Integer
 Public BallD As Integer
+Public Ballprop As Long
+
+Public Type BallStateRec
+  vX As Single
+  vY As Single
+  X As Integer
+  Y As Integer
+End Type
+Public BallState As BallStateRec
+
+Public FrameTime As Integer
 
 Public Function Init() As String
 
@@ -35,7 +46,12 @@ Public Function Init() As String
   Ball.Height = BallD
   'Set Ball = Form_Main.Command1
   'Ball.Visible = False
+  Ballprop = 16
   MakeBallRound
+  initBallState
+  
+  FrameTime = 60
+  Form_Main.Timer1.Interval = 1000 \ FrameTime
   
   Init = "AllRight"
 End Function
@@ -53,8 +69,18 @@ End Function
 Public Sub MakeBallRound()
   Dim crgn As Long
   Dim ret As Long
-  crgn = CreateEllipticRgn(0, 0, Ball.Width / 16, Ball.Height / 16)
+  'crgn = CreateEllipticRgn(0, 0, BallD, BallD)
+  crgn = CreateEllipticRgn(0, 0, Ball.Width / Ballprop, Ball.Height / Ballprop)
   ret = SetWindowRgn(Ball.hwnd, crgn, True)
+  'MsgBox (Ball.Width / 16 & " " & Ball.Height / 16)
   Ball.Visible = True
 End Sub
+
+Public Sub initBallState()
+  BallState.vX = 0
+  BallState.vY = 0
+  BallState.X = 0
+  BallState.Y = 0
+End Sub
+  
 
