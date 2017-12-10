@@ -19,20 +19,33 @@ Public Function MoveBalls(Things As Object, X As Integer, Y As Integer) As Strin
   'MsgBox (Things.Top)
   i = 0
   Coll = False
-  Do While i <= 3 And Not (Coll)
-    If X >= SliderState(i).X - BallR And SliderState(i).X + SliderState(i).W >= X Then
-      If SliderState(i).Y + BallR >= Y And Y >= SliderState(i).Y - SliderState(i).H Then
-        Collision (i)
-        MoveBalls = "c," + Str(i)
-        Coll = True
-      End If
-    End If
-    i = i + 1
-  Loop
+'  Do While i <= 3 And Not (Coll)
+'    If X >= SliderState(i).X - BallR And SliderState(i).X + SliderState(i).W >= X Then
+'      If SliderState(i).Y + BallR >= Y And Y >= SliderState(i).Y - SliderState(i).H Then
+'        Collision (i)
+'        MoveBalls = "c," + Str(i)
+'        Coll = True
+'      End If
+'    End If
+'    i = i + 1
+'  Loop
   
-  If X < -GamePlaceWidth / 2 - 500 Or X > GamePlaceWidth / 2 + 500 Or Y > GamePlaceHeight / 2 + 500 Or Y < -GamePlaceHeight / 2 - 500 Then
-    Failed
+  If X - BallR <= -GamePlaceWidth / 2 + OutH Then
+    If SliderState(2).Y >= Y And SliderState(2).Y - SliderState(2).H <= Y Then Collision (2) Else Failed 'leftout
   End If
+    
+  If X + BallR >= GamePlaceWidth / 2 - OutH Then
+    If SliderState(3).Y >= Y And SliderState(3).Y - SliderState(3).H <= Y Then Collision (3) Else Failed 'rightout
+  End If
+  
+  If Y + BallR >= GamePlaceHeight / 2 - OutH Then
+    If SliderState(0).X <= X And SliderState(0).X + SliderState(0).W >= X Then Collision (0) Else Failed 'upout
+  End If
+  
+  If Y - BallR <= -GamePlaceHeight / 2 + OutH Then
+    If SliderState(1).X <= X And SliderState(1).X + SliderState(1).W >= X Then Collision (1) Else Failed 'downout
+  End If
+ 
   If Not (Coll) Then MoveBalls = ""
 End Function
 

@@ -32,6 +32,7 @@ Public Type SliderStateRec
 End Type
 Public SliderState(0 To 3) As SliderStateRec
 Public Sliders(0 To 3) As Object
+Public OutH As Long
 
 Public CollisionTime As Long
 Public FrameTime As Integer
@@ -106,7 +107,7 @@ End Sub
 Public Sub initSliderState()
   Dim i As Integer
   Dim s As String
-  Dim OutH As Long, Thick As Long
+  Dim Thick As Long
   OutH = 250
   Thick = 1000
   
