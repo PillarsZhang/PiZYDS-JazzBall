@@ -53,8 +53,8 @@ End Function
 
 Public Function RunBall() As String
   Dim s As String
-  BallState.X = BallState.X + BallState.vX
-  BallState.Y = BallState.Y + BallState.vY
+  BallState.X = BallState.X + BallState.vX * vProp
+  BallState.Y = BallState.Y + BallState.vY * vProp
   s = MoveBalls(Ball, BallState.X, BallState.Y)
 End Function
 
