@@ -21,7 +21,7 @@ Begin VB.Form Form_Main
       Left            =   0
       ScaleHeight     =   3375
       ScaleWidth      =   255
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   720
       Width           =   255
    End
@@ -33,7 +33,7 @@ Begin VB.Form Form_Main
       Left            =   7560
       ScaleHeight     =   3495
       ScaleWidth      =   255
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   480
       Width           =   255
    End
@@ -45,7 +45,7 @@ Begin VB.Form Form_Main
       Left            =   480
       ScaleHeight     =   255
       ScaleWidth      =   6975
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   4200
       Width           =   6975
    End
@@ -57,7 +57,7 @@ Begin VB.Form Form_Main
       Left            =   360
       ScaleHeight     =   255
       ScaleWidth      =   7335
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   0
       Width           =   7335
    End
@@ -65,14 +65,6 @@ Begin VB.Form Form_Main
       Enabled         =   0   'False
       Left            =   120
       Top             =   120
-   End
-   Begin VB.CommandButton Command1 
-      Caption         =   "Command1"
-      Height          =   495
-      Left            =   6240
-      TabIndex        =   1
-      Top             =   480
-      Width           =   1095
    End
    Begin VB.PictureBox TheBall 
       BackColor       =   &H8000000D&
@@ -86,11 +78,19 @@ Begin VB.Form Form_Main
       Top             =   2280
       Width           =   250
    End
+   Begin VB.Label Label2 
+      Caption         =   "Label2"
+      Height          =   375
+      Left            =   5280
+      TabIndex        =   6
+      Top             =   480
+      Width           =   2055
+   End
    Begin VB.Label Label1 
       Caption         =   "Label1"
       Height          =   375
       Left            =   6240
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   1440
       Width           =   1095
    End

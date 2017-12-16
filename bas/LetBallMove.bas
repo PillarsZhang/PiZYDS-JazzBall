@@ -59,15 +59,23 @@ Public Function RunBall() As String
 End Function
 
 Public Function Collision(Sli As Integer)
+  Dim MoreY As Long, MoreX As Long
   CollisionTime = CollisionTime + 1
   Form_Main.Label1.Caption = CollisionTime
   If Sli = 0 Or Sli = 1 Then BallState.vY = -BallState.vY
   If Sli = 2 Or Sli = 3 Then BallState.vX = -BallState.vX
   
-  If Sli = 0 Then BallState.vY = BallState.vY * 0.8
-  If Sli = 1 Then BallState.vY = BallState.vY * 1
-  If Sli = 2 Then BallState.vX = BallState.vX * 1.1
-  If Sli = 3 Then BallState.vX = BallState.vX * 1.2
+  MoreY = 8
+  MoreX = 16
+  Randomize
+  MoreX = MoreX * Rnd
+  MoreY = MoreY * Rnd
+  If Sli = 0 Then BallState.vY = BallState.vY - MoreY
+  If Sli = 1 Then BallState.vY = BallState.vY + MoreY
+  If Sli = 2 Then BallState.vX = BallState.vX + MoreX
+  If Sli = 3 Then BallState.vX = BallState.vX - MoreX
+  
+  Form_Main.Label2.Caption = "vX:" + Str(BallState.vX) + " vY:" + Str(BallState.vY)
 End Function
 
 Public Function Failed()
