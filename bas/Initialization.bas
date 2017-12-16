@@ -43,6 +43,7 @@ Public vProp As Single
 Public Function Init() As String
 
   Debugging = True
+  Debugging = False
   
   AppZhName = "¾ôÊ¿µ¯Çò"
   AppEnName = "JazzBall"
@@ -54,6 +55,7 @@ Public Function Init() As String
   GamePlaceHeight = 5000
   
   Set Ball = Form_Main.TheBall
+  Ball.Visible = False
   BallR = 125
   BallD = BallR * 2
   Ball.Width = BallD
@@ -77,7 +79,10 @@ End Function
 
 Public Function Init_2() As String
   'Form_Main.Scale (-GamePlaceWidth / 2, GamePlaceHeight / 2)-(GamePlaceWidth / 2, -GamePlaceHeight / 2)
-  
+  If Not Debugging Then
+    Form_Main.Label1.Visible = False
+    Form_Main.Label2.Visible = False
+  End If
   If Debugging Then
     Form_Main.Line (-GamePlaceWidth / 2, 0)-(GamePlaceWidth / 2, 0)
     Form_Main.Line (0, -GamePlaceHeight / 2)-(0, GamePlaceHeight / 2)
@@ -97,7 +102,7 @@ Public Sub MakeBallRound()
   crgn = CreateEllipticRgn(0, 0, Ball.Width / Ballprop, Ball.Height / Ballprop)
   ret = SetWindowRgn(Ball.hwnd, crgn, True)
   'MsgBox (Ball.Width / 16 & " " & Ball.Height / 16)
-  Ball.Visible = True
+  'Ball.Visible = True
 End Sub
 
 Public Sub initBallState()

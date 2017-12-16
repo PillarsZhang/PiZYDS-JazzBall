@@ -1,12 +1,14 @@
 VERSION 5.00
 Begin VB.Form Form_Main 
    AutoRedraw      =   -1  'True
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "PiZYDS-JazzBall V1"
    ClientHeight    =   4530
-   ClientLeft      =   60
-   ClientTop       =   405
+   ClientLeft      =   45
+   ClientTop       =   390
    ClientWidth     =   7875
    LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
    ScaleHeight     =   -5000
    ScaleLeft       =   -4000
    ScaleMode       =   0  'User
@@ -152,6 +154,7 @@ Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As 
   Loop
   BallState.vX = Int(BallSreedInit * Cos(Angle))
   BallState.vY = Int(BallSreedInit * Sin(Angle))
+  TheBall.Visible = True
   Timer1.Enabled = True
 End Sub
 
