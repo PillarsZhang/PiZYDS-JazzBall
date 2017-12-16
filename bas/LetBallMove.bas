@@ -30,20 +30,20 @@ Public Function MoveBalls(Things As Object, X As Integer, Y As Integer) As Strin
 '    i = i + 1
 '  Loop
   
-  If X - BallR <= -GamePlaceWidth / 2 + OutH Then
+  If X - BallR <= -GamePlaceWidth / 2 + OutH And BallState.vX < 0 Then
     If SliderState(2).Y >= Y And SliderState(2).Y - SliderState(2).H <= Y Then Collision (2) Else Failed 'leftout
   End If
     
-  If X + BallR >= GamePlaceWidth / 2 - OutH Then
+  If X + BallR >= GamePlaceWidth / 2 - OutH And BallState.vX > 0 Then
     If SliderState(3).Y >= Y And SliderState(3).Y - SliderState(3).H <= Y Then Collision (3) Else Failed 'rightout
   End If
   
-  If Y + BallR >= GamePlaceHeight / 2 - OutH Then
+  If Y + BallR >= GamePlaceHeight / 2 - OutH And BallState.vY > 0 Then
     If SliderState(0).X <= X And SliderState(0).X + SliderState(0).W >= X Then Collision (0) Else Failed 'upout
   End If
   
-  If Y - BallR <= -GamePlaceHeight / 2 + OutH Then
-    If SliderState(1).X <= X And SliderState(1).X + SliderState(1).W >= X Then Collision (1) Else Failed 'downout
+  If Y - BallR <= -GamePlaceHeight / 2 + OutH And BallState.vY < 0 Then
+    If SliderState(1).X <= X And SliderState(1).X + SliderState(1).W >= X Then Collision (1) Else Failed  'downout
   End If
  
   'If BallState.vX < 1 Then BallState.vX = (BallState.vX + 10) * 1.5
