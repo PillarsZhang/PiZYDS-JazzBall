@@ -1,7 +1,7 @@
 Attribute VB_Name = "LetBallMove"
 Option Explicit
 
-Public Function MoveThings(Things As Object, X As Integer, Y As Integer) As String
+Public Function MoveThings(Things As Object, X As Long, Y As Long) As String
 Dim a As Long
   'Things.Left = X + GamePlaceWidth / 2 + 30
   'Things.Top = -Y + GamePlaceHeight / 2 + 30
@@ -10,9 +10,9 @@ Dim a As Long
   MoveThings = ""
 End Function
 
-Public Function MoveBalls(Things As Object, X As Integer, Y As Integer) As String
+Public Function MoveBalls(Things As Object, X As Long, Y As Long) As String
   Dim Temp As String
-  Dim i As Integer
+  Dim i As Long
   Dim Coll As Boolean
   Temp = MoveThings(Things, X - Things.Width / 2 + 30, Y + Things.Height / 2)
   'Temp = MoveThings(Things, 0, 0)
@@ -31,19 +31,19 @@ Public Function MoveBalls(Things As Object, X As Integer, Y As Integer) As Strin
 '  Loop
   
   If X - BallR <= -GamePlaceWidth / 2 + OutH And BallState.vX < 0 Then
-    If SliderState(2).Y >= Y And SliderState(2).Y - SliderState(2).H <= Y Then Collision (2) Else Failed 'leftout
+    If SliderState(2).Y >= Y And SliderState(2).Y - SliderState(2).H <= Y Or SliderState(2).NPC Then Collision (2) Else Failed 'leftout
   End If
     
   If X + BallR >= GamePlaceWidth / 2 - OutH And BallState.vX > 0 Then
-    If SliderState(3).Y >= Y And SliderState(3).Y - SliderState(3).H <= Y Then Collision (3) Else Failed 'rightout
+    If SliderState(3).Y >= Y And SliderState(3).Y - SliderState(3).H <= Y Or SliderState(3).NPC Then Collision (3) Else Failed 'rightout
   End If
   
   If Y + BallR >= GamePlaceHeight / 2 - OutH And BallState.vY > 0 Then
-    If SliderState(0).X <= X And SliderState(0).X + SliderState(0).W >= X Then Collision (0) Else Failed 'upout
+    If SliderState(0).X <= X And SliderState(0).X + SliderState(0).W >= X Or SliderState(0).NPC Then Collision (0) Else Failed 'upout
   End If
   
   If Y - BallR <= -GamePlaceHeight / 2 + OutH And BallState.vY < 0 Then
-    If SliderState(1).X <= X And SliderState(1).X + SliderState(1).W >= X Then Collision (1) Else Failed  'downout
+    If SliderState(1).X <= X And SliderState(1).X + SliderState(1).W >= X Or SliderState(1).NPC Then Collision (1) Else Failed  'downout
   End If
  
   'If BallState.vX < 1 Then BallState.vX = (BallState.vX + 10) * 1.5
@@ -58,7 +58,7 @@ Public Function RunBall() As String
   s = MoveBalls(Ball, BallState.X, BallState.Y)
 End Function
 
-Public Function Collision(Sli As Integer)
+Public Function Collision(Sli As Long)
   Dim MoreY As Long, MoreX As Long
   CollisionTime = CollisionTime + 1
   Form_Main.Label1.Caption = CollisionTime
@@ -80,6 +80,6 @@ End Function
 
 Public Function Failed()
   Form_Main.Timer1.Enabled = False
-  MsgBox ("Failed!")
+  Form_Main.Label1.Caption = "Falied"
 End Function
 

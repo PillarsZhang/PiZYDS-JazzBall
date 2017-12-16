@@ -101,12 +101,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
-Private Sub Command1_Click()
-  BallState.vX = 220
-  BallState.vY = -200
-  Timer1.Enabled = True
-End Sub
-
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
   Select Case KeyCode
     Case vbKeyUp    'ÉÏ¼ýÍ·¼ü
@@ -145,11 +139,19 @@ Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y A
 End Sub
 
 Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  Dim s As String
+  Dim Angle As Single
   BallState.X = X
   BallState.Y = Y
   s = MoveBalls(Ball, BallState.X, BallState.Y)
-  BallState.vX = 100
-  BallState.vY = -200
+  Randomize
+  Angle = Rnd * 360
+  Do While Int(Angle) Mod 90 <= 30 Or Int(Angle) Mod 90 >= 60
+    Randomize
+    Angle = Rnd * 360
+  Loop
+  BallState.vX = Int(BallSreedInit * Cos(Angle))
+  BallState.vY = Int(BallSreedInit * Sin(Angle))
   Timer1.Enabled = True
 End Sub
 
