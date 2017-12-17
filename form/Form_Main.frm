@@ -22,11 +22,11 @@ Begin VB.Form Form_Main
       BorderStyle     =   0  'None
       ForeColor       =   &H80000008&
       Height          =   495
-      Left            =   2400
+      Left            =   6720
       ScaleHeight     =   495
       ScaleWidth      =   495
       TabIndex        =   6
-      Top             =   1440
+      Top             =   3360
       Width           =   495
    End
    Begin VB.PictureBox Slider 
@@ -82,6 +82,78 @@ Begin VB.Form Form_Main
       Left            =   120
       Top             =   120
    End
+   Begin VB.Label Label7 
+      BackColor       =   &H00FF80FF&
+      BeginProperty Font 
+         Name            =   "Î¢ÈíÑÅºÚ"
+         Size            =   14.25
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   1920
+      TabIndex        =   11
+      Top             =   2160
+      Visible         =   0   'False
+      Width           =   2895
+   End
+   Begin VB.Label Label6 
+      BackColor       =   &H00FF8080&
+      Caption         =   "µã»÷ÒÔ¿ªÊ¼"
+      BeginProperty Font 
+         Name            =   "Î¢ÈíÑÅºÚ"
+         Size            =   9
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Left            =   1560
+      TabIndex        =   10
+      Top             =   3000
+      Width           =   975
+   End
+   Begin VB.Label Label5 
+      BackColor       =   &H00FF8080&
+      Caption         =   "¾ôÊ¿µ¯Çò"
+      BeginProperty Font 
+         Name            =   "Î¢ÈíÑÅºÚ"
+         Size            =   15
+         Charset         =   134
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   5040
+      TabIndex        =   9
+      Top             =   1800
+      Width           =   1215
+   End
+   Begin VB.Label Label4 
+      BackColor       =   &H00FF80FF&
+      Caption         =   " Jazz Ball"
+      BeginProperty Font 
+         Name            =   "Î¢ÈíÑÅºÚ"
+         Size            =   36
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   2415
+      Left            =   1440
+      TabIndex        =   8
+      Top             =   960
+      Width           =   5295
+   End
    Begin VB.Label Label3 
       Caption         =   "Label3"
       Height          =   255
@@ -130,6 +202,7 @@ Private Sub Form_Load()
   Dim InitMsg As String
   Dim i As Long
   Dim t As Long
+  GameBegin = False
   InitMsg = Init()
   If InitMsg <> "AllRight" Then
     MsgBox (InitMsg)
@@ -166,6 +239,10 @@ End Sub
 Private Sub Form_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
   Dim s As String
   Dim Angle As Single
+  CollisionTime = 0
+  If Not (GameBegin) Then
+    Exit Sub
+  End If
   BallState.x = x
   BallState.y = y
   s = MoveBalls(Ball, BallState.x, BallState.y)
@@ -181,6 +258,17 @@ Private Sub Form_MouseUp(Button As Integer, Shift As Integer, x As Single, y As 
   TheBall.Visible = True
   Timer1.Enabled = True
 End Sub
+
+
+Private Sub Label6_Click()
+  Label4.Visible = False
+  Label5.Visible = False
+  Label6.Visible = False
+  Label7.Visible = False
+  GameBegin = True
+  Call Form_MouseUp(1, 1, 0, 0)
+End Sub
+
 
 Private Sub Timer1_Timer()
   OneFrame

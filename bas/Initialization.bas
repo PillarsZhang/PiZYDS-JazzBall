@@ -2,6 +2,7 @@ Attribute VB_Name = "Initialization"
 Option Explicit
 
 Public Debugging As Boolean
+Public GameBegin As Boolean
 
 Public AppZhName As String
 Public AppEnName As String
