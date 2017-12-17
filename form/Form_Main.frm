@@ -15,6 +15,20 @@ Begin VB.Form Form_Main
    ScaleTop        =   2500
    ScaleWidth      =   8000
    StartUpPosition =   3  '´°¿ÚÈ±Ê¡
+   Begin VB.PictureBox TheBall 
+      Appearance      =   0  'Flat
+      AutoRedraw      =   -1  'True
+      BackColor       =   &H8000000D&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   495
+      Left            =   2400
+      ScaleHeight     =   495
+      ScaleWidth      =   495
+      TabIndex        =   6
+      Top             =   1440
+      Width           =   495
+   End
    Begin VB.PictureBox Slider 
       BackColor       =   &H0000FFFF&
       BorderStyle     =   0  'None
@@ -23,7 +37,7 @@ Begin VB.Form Form_Main
       Left            =   0
       ScaleHeight     =   3375
       ScaleWidth      =   255
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   720
       Width           =   255
    End
@@ -35,7 +49,7 @@ Begin VB.Form Form_Main
       Left            =   7560
       ScaleHeight     =   3495
       ScaleWidth      =   255
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   480
       Width           =   255
    End
@@ -47,7 +61,7 @@ Begin VB.Form Form_Main
       Left            =   480
       ScaleHeight     =   255
       ScaleWidth      =   6975
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   4200
       Width           =   6975
    End
@@ -59,7 +73,7 @@ Begin VB.Form Form_Main
       Left            =   360
       ScaleHeight     =   255
       ScaleWidth      =   7335
-      TabIndex        =   1
+      TabIndex        =   0
       Top             =   0
       Width           =   7335
    End
@@ -68,23 +82,19 @@ Begin VB.Form Form_Main
       Left            =   120
       Top             =   120
    End
-   Begin VB.PictureBox TheBall 
-      BackColor       =   &H8000000D&
-      BorderStyle     =   0  'None
-      Height          =   250
-      Left            =   3840
-      ScaleHeight     =   255
-      ScaleMode       =   0  'User
-      ScaleWidth      =   255
-      TabIndex        =   0
-      Top             =   2280
-      Width           =   250
+   Begin VB.Label Label3 
+      Caption         =   "Label3"
+      Height          =   255
+      Left            =   5280
+      TabIndex        =   7
+      Top             =   960
+      Width           =   855
    End
    Begin VB.Label Label2 
       Caption         =   "Label2"
       Height          =   375
       Left            =   5280
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   480
       Width           =   2055
    End
@@ -92,8 +102,8 @@ Begin VB.Form Form_Main
       Caption         =   "Label1"
       Height          =   375
       Left            =   6240
-      TabIndex        =   5
-      Top             =   1440
+      TabIndex        =   4
+      Top             =   960
       Width           =   1095
    End
 End
@@ -118,12 +128,19 @@ End Sub
 
 Private Sub Form_Load()
   Dim InitMsg As String
+  Dim t As Long
   InitMsg = Init()
   If InitMsg <> "AllRight" Then
     MsgBox (InitMsg)
     End
   End If
   Me.KeyPreview = True
+  TheBall.Picture = LoadPicture(App.Path + "\src\ball.bmp")
+  Me.Picture = LoadPicture(App.Path + "\src\bg.bmp")
+  'Me.PaintPicture Me.Picture, 0, 0, Me.Width, Me.Height
+  'Me.PaintPicture Me.Picture, -Me.Width / 2, Me.Height / 2, Me.Width / 2, -Me.Height / 2
+  TheBall.PaintPicture TheBall.Picture, 0, 0, TheBall.Width, TheBall.Height
+  't = Rotation(Picture1.hDC, TheBall.hDC, TheBall.Width, TheBall.Height, TheBall.Width, TheBall.Height, 90)
 End Sub
 
 Private Sub Form_Activate()
@@ -135,23 +152,24 @@ Private Sub Form_Activate()
   End If
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-  Call PlayerEventMou(X, Y)
-  Debug.Print (X & " " & Y)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+  Call PlayerEventMou(x, y)
+  Debug.Print (x & " " & y)
 End Sub
 
-Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Form_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
   Dim s As String
   Dim Angle As Single
-  BallState.X = X
-  BallState.Y = Y
-  s = MoveBalls(Ball, BallState.X, BallState.Y)
+  BallState.x = x
+  BallState.y = y
+  s = MoveBalls(Ball, BallState.x, BallState.y)
   Randomize
-  Angle = Rnd * 360
-  Do While Int(Angle) Mod 90 <= 30 Or Int(Angle) Mod 90 >= 60
+  Angle = Rnd * 360 - 180
+  Do While Not (Abs(BallSreedInit * Cos(Angle)) >= 80 And Abs(BallSreedInit * Sin(Angle)) >= 60)
     Randomize
-    Angle = Rnd * 360
+    Angle = Rnd * 360 - 180
   Loop
+  Label3.Caption = Str(Angle)
   BallState.vX = Int(BallSreedInit * Cos(Angle))
   BallState.vY = Int(BallSreedInit * Sin(Angle))
   TheBall.Visible = True

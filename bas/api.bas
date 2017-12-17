@@ -3,3 +3,27 @@ Option Explicit
 
 Public Declare Function SetWindowRgn Lib "user32" (ByVal hwnd As Long, ByVal hRgn As Long, ByVal bRedraw As Boolean) As Long
 Public Declare Function CreateEllipticRgn Lib "gdi32" (ByVal X1 As Long, ByVal Y1 As Long, ByVal X2 As Long, ByVal Y2 As Long) As Long
+
+Type POINTAPI
+  x As Long
+  y As Long
+End Type
+
+Private Declare Function PlgBlt Lib "gdi32" (ByVal hdcDest As Long, lpPoint As POINTAPI, _
+   ByVal hdcSrc As Long, ByVal nXSrc As Long, ByVal nYSrc As Long, ByVal nWidth As Long, _
+   ByVal nHeight As Long, ByVal hbmMask As Long, ByVal xMask As Long, ByVal yMask As Long) As Long
+   
+Public Function Rotation(ByVal DesHdc As Long, ByVal SrcHdc As Long, ByVal DesX As Long, ByVal DesY As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal Angle As Single) As Long
+Dim PI As Double
+PI = 3.1415926
+Dim lpPoint(1 To 3) As POINTAPI
+Dim Rad As Double
+Rad = Angle * PI / 180
+lpPoint(3).x = DesX
+lpPoint(3).y = DesX
+lpPoint(1).x = lpPoint(3).x + nHeight * Sin(Rad)
+lpPoint(1).y = lpPoint(3).y - nHeight * Cos(Rad)
+lpPoint(2).x = lpPoint(1).x + nWidth * Cos(Rad)
+lpPoint(2).y = lpPoint(1).y + nWidth * Sin(Rad)
+PlgBlt DesHdc, lpPoint(1), SrcHdc, 0, 0, nWidth, nHeight, 0, 0, 0
+End Function
