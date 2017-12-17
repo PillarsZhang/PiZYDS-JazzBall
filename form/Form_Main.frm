@@ -209,15 +209,15 @@ Private Sub Form_Load()
     End
   End If
   Me.KeyPreview = True
-  TheBall.Picture = LoadPicture(App.Path + "\src\ball.bmp")
-  Me.Picture = LoadPicture(App.Path + "\src\bg.bmp")
+  TheBall.Picture = LoadResPicture(101, vbResBitmap)
+  Me.Picture = LoadResPicture(102, vbResBitmap)
   'Me.PaintPicture Me.Picture, 0, 0, Me.Width, Me.Height
   'Me.PaintPicture Me.Picture, -Me.Width / 2, Me.Height / 2, Me.Width / 2, -Me.Height / 2
   TheBall.PaintPicture TheBall.Picture, 0, 0, TheBall.Width, TheBall.Height
   't = Rotation(Picture1.hDC, TheBall.hDC, TheBall.Width, TheBall.Height, TheBall.Width, TheBall.Height, 90)
   
   For i = 0 To 3
-    Slider(i).Picture = LoadPicture(App.Path + "\src\wood.bmp")
+    Slider(i).Picture = LoadResPicture(103, vbResBitmap)
     'Slider(i).PaintPicture Slider(i).Picture, 0, 0, Slider(i).Width, Slider(i).Height
   Next i
 End Sub

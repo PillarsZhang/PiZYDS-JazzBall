@@ -6,6 +6,7 @@ Module=api; bas\api.bas
 Module=LetBallMove; bas\LetBallMove.bas
 Module=OneFrameEvents; bas\OneFrameEvents.bas
 Module=SliderPlayer; bas\SliderPlayer.bas
+ResFile32="PiZYDS_JazzBall.RES"
 IconForm="Form_Main"
 Startup="Form_Main"
 HelpFile=""
