@@ -1,6 +1,6 @@
-Form_Main = 13, 163, 830, 574, , 84, 111, 901, 583, C
-Initialization = 49, 162, 866, 654, 
+Form_Main = 126, 169, 943, 580, , 84, 111, 901, 583, C
+Initialization = 81, 285, 898, 777, 
 api = 156, 156, 973, 628, 
-LetBallMove = 172, 74, 989, 546, 
+LetBallMove = 209, 87, 1026, 559, 
 OneFrameEvents = 104, 104, 921, 576, 
 SliderPlayer = 50, 113, 867, 585, 

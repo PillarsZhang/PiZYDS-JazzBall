@@ -7,6 +7,7 @@ Begin VB.Form Form_Main
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   7875
+   Icon            =   "Form_Main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    ScaleHeight     =   -5000
@@ -82,8 +83,16 @@ Begin VB.Form Form_Main
       Left            =   120
       Top             =   120
    End
+   Begin VB.Image Image1 
+      Height          =   495
+      Left            =   4440
+      Stretch         =   -1  'True
+      Top             =   2760
+      Width           =   1935
+   End
    Begin VB.Label Label7 
       BackColor       =   &H00FF80FF&
+      Caption         =   "Come on!!!"
       BeginProperty Font 
          Name            =   "Î¢ÈíÑÅºÚ"
          Size            =   14.25
@@ -94,10 +103,9 @@ Begin VB.Form Form_Main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   1920
+      Left            =   1560
       TabIndex        =   11
-      Top             =   2160
-      Visible         =   0   'False
+      Top             =   2400
       Width           =   2895
    End
    Begin VB.Label Label6 
@@ -120,7 +128,7 @@ Begin VB.Form Form_Main
    End
    Begin VB.Label Label5 
       BackColor       =   &H00FF8080&
-      Caption         =   "¾ôÊ¿µ¯Çò"
+      Caption         =   "¾ôÊ¿µ¯Çò by ÕÂÓãDS"
       BeginProperty Font 
          Name            =   "Î¢ÈíÑÅºÚ"
          Size            =   15
@@ -131,10 +139,10 @@ Begin VB.Form Form_Main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5040
+      Left            =   3840
       TabIndex        =   9
-      Top             =   1800
-      Width           =   1215
+      Top             =   1920
+      Width           =   2535
    End
    Begin VB.Label Label4 
       BackColor       =   &H00FF80FF&
@@ -149,18 +157,10 @@ Begin VB.Form Form_Main
          Strikethrough   =   0   'False
       EndProperty
       Height          =   2415
-      Left            =   1440
+      Left            =   1200
       TabIndex        =   8
       Top             =   960
       Width           =   5295
-   End
-   Begin VB.Label Label3 
-      Caption         =   "Label3"
-      Height          =   255
-      Left            =   5280
-      TabIndex        =   7
-      Top             =   960
-      Width           =   855
    End
    Begin VB.Label Label2 
       Caption         =   "Label2"
@@ -169,6 +169,14 @@ Begin VB.Form Form_Main
       TabIndex        =   5
       Top             =   480
       Width           =   2055
+   End
+   Begin VB.Label Label3 
+      Caption         =   "Label3"
+      Height          =   255
+      Left            =   5280
+      TabIndex        =   7
+      Top             =   960
+      Width           =   855
    End
    Begin VB.Label Label1 
       Caption         =   "Label1"
@@ -210,6 +218,7 @@ Private Sub Form_Load()
   End If
   Me.KeyPreview = True
   TheBall.Picture = LoadResPicture(101, vbResBitmap)
+  Image1.Picture = LoadResPicture(104, vbResBitmap)
   Me.Picture = LoadResPicture(102, vbResBitmap)
   'Me.PaintPicture Me.Picture, 0, 0, Me.Width, Me.Height
   'Me.PaintPicture Me.Picture, -Me.Width / 2, Me.Height / 2, Me.Width / 2, -Me.Height / 2
@@ -231,21 +240,21 @@ Private Sub Form_Activate()
   End If
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
-  If GameBegin Then Call PlayerEventMou(x, y)
-  Debug.Print (x & " " & y)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  If GameBegin Then Call PlayerEventMou(X, Y)
+  Debug.Print (X & " " & Y)
 End Sub
 
-Private Sub Form_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
   Dim s As String
   Dim Angle As Single
   CollisionTime = 0
   If Not (GameBegin) Then
     Exit Sub
   End If
-  BallState.x = x
-  BallState.y = y
-  s = MoveBalls(Ball, BallState.x, BallState.y)
+  BallState.X = X
+  BallState.Y = Y
+  s = MoveBalls(Ball, BallState.X, BallState.Y)
   Randomize
   Angle = Rnd * 360 - 180
   Do While Not (Abs(BallSreedInit * Cos(Angle)) >= 80 And Abs(BallSreedInit * Sin(Angle)) >= 60)
@@ -265,12 +274,18 @@ Private Sub Label6_Click()
   Label5.Visible = False
   Label6.Visible = False
   Label7.Visible = False
+  Image1.Visible = False
   GameBegin = True
   Call Form_MouseUp(1, 1, 0, 0)
 End Sub
 
-
 Private Sub Timer1_Timer()
   OneFrame
+End Sub
+
+Private Sub Image1_Click()
+On Error GoTo Err
+ Call ShellExecute(hwnd, "open", "http://www.pizyds.com/", vbNullString, vbNullString, &H0)
+Err:
 End Sub
 
