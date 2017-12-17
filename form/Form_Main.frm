@@ -10,6 +10,7 @@ Begin VB.Form Form_Main
    Icon            =   "Form_Main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
+   MouseIcon       =   "Form_Main.frx":1084A
    ScaleHeight     =   -5000
    ScaleLeft       =   -4000
    ScaleMode       =   0  'User
@@ -86,6 +87,7 @@ Begin VB.Form Form_Main
    Begin VB.Image Image1 
       Height          =   495
       Left            =   4440
+      MousePointer    =   2  'Cross
       Stretch         =   -1  'True
       Top             =   2760
       Width           =   1935
