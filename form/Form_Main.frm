@@ -232,7 +232,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
-  Call PlayerEventMou(x, y)
+  If GameBegin Then Call PlayerEventMou(x, y)
   Debug.Print (x & " " & y)
 End Sub
 

@@ -44,7 +44,7 @@ Public vProp As Single
 Public Function Init() As String
 
   Debugging = True
-  'Debugging = False
+  Debugging = False
   
   AppZhName = "¾ôÊ¿µ¯Çò"
   AppEnName = "JazzBall"
