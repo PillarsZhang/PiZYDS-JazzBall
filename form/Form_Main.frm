@@ -128,6 +128,7 @@ End Sub
 
 Private Sub Form_Load()
   Dim InitMsg As String
+  Dim i As Long
   Dim t As Long
   InitMsg = Init()
   If InitMsg <> "AllRight" Then
@@ -141,6 +142,11 @@ Private Sub Form_Load()
   'Me.PaintPicture Me.Picture, -Me.Width / 2, Me.Height / 2, Me.Width / 2, -Me.Height / 2
   TheBall.PaintPicture TheBall.Picture, 0, 0, TheBall.Width, TheBall.Height
   't = Rotation(Picture1.hDC, TheBall.hDC, TheBall.Width, TheBall.Height, TheBall.Width, TheBall.Height, 90)
+  
+  For i = 0 To 3
+    Slider(i).Picture = LoadPicture(App.Path + "\src\wood.bmp")
+    'Slider(i).PaintPicture Slider(i).Picture, 0, 0, Slider(i).Width, Slider(i).Height
+  Next i
 End Sub
 
 Private Sub Form_Activate()
