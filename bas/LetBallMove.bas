@@ -84,6 +84,7 @@ Public Function Failed()
   Form_Main.Label1.Caption = "Falied"
   Form_Main.Label7.Caption = "×îÖÕµÃ·Ö" + Str(CollisionTime)
   CollisionTime = 0
+  Form_Main.Label9.Caption = 0
   Form_Main.StopMode.Visible = True
   Form_Main.Label9.Visible = False
   GameBegin = False

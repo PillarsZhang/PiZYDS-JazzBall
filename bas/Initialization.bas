@@ -41,6 +41,11 @@ Public CollisionTime As Long
 Public FrameTime As Long
 Public vProp As Single
 
+Public MouX As Single
+Public MouY As Single
+
+Public FPS As Single
+
 Public Function Init() As String
 
   Debugging = True
@@ -69,7 +74,7 @@ Public Function Init() As String
   MakeBallRound
   initBallState
   'MsgBox (Ball.Left)
-  FrameTime = 30
+  FrameTime = 100
   vProp = 30 / FrameTime
   Form_Main.Timer1.Interval = 1000 \ FrameTime
   
@@ -155,7 +160,10 @@ Public Sub initSliderState()
     Sliders(i).Height = SliderState(i).H
     s = MoveThings(Sliders(i), SliderState(i).X, SliderState(i).Y)
   Next i
-  SliderState(1).NPC = False
+  
   'SliderState(0).NPC = False
+  SliderState(1).NPC = False
+  'SliderState(2).NPC = False
+  'SliderState(3).NPC = False
 End Sub
 

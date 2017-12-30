@@ -17,6 +17,11 @@ Begin VB.Form Form_Main
    ScaleTop        =   2500
    ScaleWidth      =   8000
    StartUpPosition =   3  '´°¿ÚÈ±Ê¡
+   Begin VB.Timer Timer2 
+      Interval        =   1000
+      Left            =   480
+      Top             =   3600
+   End
    Begin VB.Frame StopMode 
       BackColor       =   &H00FF80FF&
       BorderStyle     =   0  'None
@@ -295,8 +300,14 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-  If GameBegin Then Call PlayerEventMou(X, Y)
-  Debug.Print (X & " " & Y)
+  MouX = X
+  MouY = Y
+  If GameBegin Then Call PlayerEventMou(MouX, MouY)
+  'Debug.Print (X & " " & Y)
+End Sub
+
+Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+  Failed
 End Sub
 
 Private Sub Label6_Click()
@@ -314,3 +325,7 @@ On Error GoTo Err
 Err:
 End Sub
 
+Private Sub Timer2_Timer()
+  Debug.Print (FPS)
+  FPS = 0
+End Sub
