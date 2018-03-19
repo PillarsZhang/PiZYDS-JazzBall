@@ -21,14 +21,14 @@ Public BallSreedInit As Long
 Public Type BallStateRec
   vX As Single
   vY As Single
-  x As Long
-  y As Long
+  X As Long
+  Y As Long
 End Type
 Public BallState As BallStateRec
 
 Public Type SliderStateRec
-  x As Long
-  y As Long
+  X As Long
+  Y As Long
   W As Long
   H As Long
   NPC As Boolean
@@ -41,6 +41,11 @@ Public CollisionTime As Long
 Public FrameTime As Long
 Public vProp As Single
 
+Public MouX As Single
+Public MouY As Single
+
+Public FPS As Single
+
 Public Function Init() As String
 
   Debugging = True
@@ -48,9 +53,10 @@ Public Function Init() As String
   
   AppZhName = "¾ôÊ¿µ¯Çò"
   AppEnName = "JazzBall"
-  AppVersion = "V1.0.0"
+  AppVersion = "V1.1.0"
   AppName = "PiZYDS-" & AppEnName & "-" & AppZhName & " " & AppVersion
   Form_Main.Caption = AppName
+  Form_Main.Label8.Caption = AppVersion
   
   GamePlaceWidth = 8000
   GamePlaceHeight = 5000
@@ -68,7 +74,7 @@ Public Function Init() As String
   MakeBallRound
   initBallState
   'MsgBox (Ball.Left)
-  FrameTime = 30
+  FrameTime = 100
   vProp = 30 / FrameTime
   Form_Main.Timer1.Interval = 1000 \ FrameTime
   
@@ -111,9 +117,9 @@ Public Sub initBallState()
   Dim s As String
   BallState.vX = 0
   BallState.vY = 0
-  BallState.x = 0
-  BallState.y = 0
-  s = MoveBalls(Ball, BallState.x, BallState.y)
+  BallState.X = 0
+  BallState.Y = 0
+  s = MoveBalls(Ball, BallState.X, BallState.Y)
 End Sub
   
 Public Sub initSliderState()
@@ -125,26 +131,26 @@ Public Sub initSliderState()
   
   SliderState(0).H = Thick
   SliderState(0).W = 2000
-  SliderState(0).x = -SliderState(0).W / 2
-  SliderState(0).y = GamePlaceHeight / 2 + SliderState(0).H - OutH
+  SliderState(0).X = -SliderState(0).W / 2
+  SliderState(0).Y = GamePlaceHeight / 2 + SliderState(0).H - OutH
   'UP
   
   SliderState(1).H = Thick
   SliderState(1).W = 2000
-  SliderState(1).x = -SliderState(1).W / 2
-  SliderState(1).y = -GamePlaceHeight / 2 + OutH
+  SliderState(1).X = -SliderState(1).W / 2
+  SliderState(1).Y = -GamePlaceHeight / 2 + OutH
   'DOWN
   
   SliderState(2).H = 1500
   SliderState(2).W = Thick
-  SliderState(2).x = -GamePlaceWidth / 2 - SliderState(2).W + OutH
-  SliderState(2).y = SliderState(2).H / 2
+  SliderState(2).X = -GamePlaceWidth / 2 - SliderState(2).W + OutH
+  SliderState(2).Y = SliderState(2).H / 2
   'LEFT
   
   SliderState(3).H = 1500
   SliderState(3).W = Thick
-  SliderState(3).x = GamePlaceWidth / 2 - OutH
-  SliderState(3).y = SliderState(3).H / 2
+  SliderState(3).X = GamePlaceWidth / 2 - OutH
+  SliderState(3).Y = SliderState(3).H / 2
   'RIGHT
   
   For i = 0 To 3
@@ -152,9 +158,12 @@ Public Sub initSliderState()
     Set Sliders(i) = Form_Main.Slider(i)
     Sliders(i).Width = SliderState(i).W
     Sliders(i).Height = SliderState(i).H
-    s = MoveThings(Sliders(i), SliderState(i).x, SliderState(i).y)
+    s = MoveThings(Sliders(i), SliderState(i).X, SliderState(i).Y)
   Next i
-  SliderState(1).NPC = False
+  
   'SliderState(0).NPC = False
+  SliderState(1).NPC = False
+  'SliderState(2).NPC = False
+  'SliderState(3).NPC = False
 End Sub
 

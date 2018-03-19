@@ -10,13 +10,129 @@ Begin VB.Form Form_Main
    Icon            =   "Form_Main.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   MouseIcon       =   "Form_Main.frx":1084A
+   MouseIcon       =   "Form_Main.frx":4C4A
    ScaleHeight     =   -5000
    ScaleLeft       =   -4000
    ScaleMode       =   0  'User
    ScaleTop        =   2500
    ScaleWidth      =   8000
    StartUpPosition =   3  '´°¿ÚÈ±Ê¡
+   Begin VB.Timer Timer2 
+      Interval        =   1000
+      Left            =   480
+      Top             =   3600
+   End
+   Begin VB.Frame StopMode 
+      BackColor       =   &H00FF80FF&
+      BorderStyle     =   0  'None
+      Caption         =   "Stop"
+      Height          =   2535
+      Left            =   1080
+      TabIndex        =   8
+      Top             =   960
+      Width           =   5775
+      Begin VB.Label Label8 
+         BackColor       =   &H00FF80FF&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Label8"
+         BeginProperty Font 
+            Name            =   "Î¢ÈíÑÅºÚ"
+            Size            =   10.5
+            Charset         =   134
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   3360
+         TabIndex        =   13
+         Top             =   480
+         Width           =   975
+      End
+      Begin VB.Label Label5 
+         BackColor       =   &H00FF8080&
+         Caption         =   "¾ôÊ¿µ¯Çò by ÕÂÓãDS"
+         BeginProperty Font 
+            Name            =   "Î¢ÈíÑÅºÚ"
+            Size            =   15
+            Charset         =   134
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   2640
+         TabIndex        =   12
+         Top             =   960
+         Width           =   2775
+      End
+      Begin VB.Image Image1 
+         Height          =   495
+         Left            =   3720
+         MousePointer    =   2  'Cross
+         Stretch         =   -1  'True
+         Top             =   1920
+         Width           =   1935
+      End
+      Begin VB.Label Label7 
+         BackColor       =   &H00FF80FF&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Come on!!!"
+         BeginProperty Font 
+            Name            =   "Î¢ÈíÑÅºÚ"
+            Size            =   14.25
+            Charset         =   134
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   480
+         TabIndex        =   11
+         Top             =   1440
+         Width           =   2895
+      End
+      Begin VB.Label Label4 
+         BackColor       =   &H00FF80FF&
+         BackStyle       =   0  'Transparent
+         Caption         =   " Jazz Ball"
+         BeginProperty Font 
+            Name            =   "Î¢ÈíÑÅºÚ"
+            Size            =   36
+            Charset         =   134
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   975
+         Left            =   0
+         TabIndex        =   10
+         Top             =   0
+         Width           =   3375
+      End
+      Begin VB.Label Label6 
+         BackColor       =   &H00FF8080&
+         Caption         =   "   µã»÷ÒÔ¿ªÊ¼"
+         BeginProperty Font 
+            Name            =   "Î¢ÈíÑÅºÚ"
+            Size            =   9
+            Charset         =   134
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   360
+         TabIndex        =   9
+         Top             =   2040
+         Width           =   1335
+      End
+   End
    Begin VB.PictureBox TheBall 
       Appearance      =   0  'Flat
       AutoRedraw      =   -1  'True
@@ -48,7 +164,7 @@ Begin VB.Form Form_Main
       BorderStyle     =   0  'None
       Height          =   3495
       Index           =   2
-      Left            =   7560
+      Left            =   7680
       ScaleHeight     =   3495
       ScaleWidth      =   255
       TabIndex        =   2
@@ -74,95 +190,36 @@ Begin VB.Form Form_Main
       Index           =   0
       Left            =   360
       ScaleHeight     =   255
-      ScaleWidth      =   7335
+      ScaleWidth      =   6615
       TabIndex        =   0
       Top             =   0
-      Width           =   7335
+      Width           =   6615
    End
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Left            =   120
       Top             =   120
    End
-   Begin VB.Image Image1 
-      Height          =   495
-      Left            =   4440
-      MousePointer    =   2  'Cross
-      Stretch         =   -1  'True
-      Top             =   2760
-      Width           =   1935
-   End
-   Begin VB.Label Label7 
-      BackColor       =   &H00FF80FF&
-      Caption         =   "Come on!!!"
+   Begin VB.Label Label9 
+      BackColor       =   &H00FF0000&
+      BackStyle       =   0  'Transparent
+      Caption         =   "0"
       BeginProperty Font 
          Name            =   "Î¢ÈíÑÅºÚ"
          Size            =   14.25
          Charset         =   134
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   495
-      Left            =   1560
-      TabIndex        =   11
-      Top             =   2400
-      Width           =   2895
-   End
-   Begin VB.Label Label6 
-      BackColor       =   &H00FF8080&
-      Caption         =   "µã»÷ÒÔ¿ªÊ¼"
-      BeginProperty Font 
-         Name            =   "Î¢ÈíÑÅºÚ"
-         Size            =   9
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Left            =   1560
-      TabIndex        =   10
-      Top             =   3000
-      Width           =   975
-   End
-   Begin VB.Label Label5 
-      BackColor       =   &H00FF8080&
-      Caption         =   "¾ôÊ¿µ¯Çò by ÕÂÓãDS"
-      BeginProperty Font 
-         Name            =   "Î¢ÈíÑÅºÚ"
-         Size            =   15
-         Charset         =   134
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   375
-      Left            =   3840
-      TabIndex        =   9
-      Top             =   1920
-      Width           =   2535
-   End
-   Begin VB.Label Label4 
-      BackColor       =   &H00FF80FF&
-      Caption         =   " Jazz Ball"
-      BeginProperty Font 
-         Name            =   "Î¢ÈíÑÅºÚ"
-         Size            =   36
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
          Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   2415
-      Left            =   1200
-      TabIndex        =   8
-      Top             =   960
-      Width           =   5295
+      ForeColor       =   &H00FFC0FF&
+      Height          =   375
+      Left            =   6960
+      TabIndex        =   14
+      Top             =   360
+      Visible         =   0   'False
+      Width           =   615
    End
    Begin VB.Label Label2 
       Caption         =   "Label2"
@@ -243,42 +300,19 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-  If GameBegin Then Call PlayerEventMou(X, Y)
-  Debug.Print (X & " " & Y)
+  MouX = X
+  MouY = Y
+  If GameBegin Then Call PlayerEventMou(MouX, MouY)
+  'Debug.Print (X & " " & Y)
 End Sub
 
 Private Sub Form_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
-  Dim s As String
-  Dim Angle As Single
-  CollisionTime = 0
-  If Not (GameBegin) Then
-    Exit Sub
-  End If
-  BallState.X = X
-  BallState.Y = Y
-  s = MoveBalls(Ball, BallState.X, BallState.Y)
-  Randomize
-  Angle = Rnd * 360 - 180
-  Do While Not (Abs(BallSreedInit * Cos(Angle)) >= 80 And Abs(BallSreedInit * Sin(Angle)) >= 60)
-    Randomize
-    Angle = Rnd * 360 - 180
-  Loop
-  Label3.Caption = Str(Angle)
-  BallState.vX = Int(BallSreedInit * Cos(Angle))
-  BallState.vY = Int(BallSreedInit * Sin(Angle))
-  TheBall.Visible = True
-  Timer1.Enabled = True
+  Failed
 End Sub
 
-
 Private Sub Label6_Click()
-  Label4.Visible = False
-  Label5.Visible = False
-  Label6.Visible = False
-  Label7.Visible = False
-  Image1.Visible = False
-  GameBegin = True
-  Call Form_MouseUp(1, 1, 0, 0)
+  StopMode.Visible = False
+  Call StartBall(0, 0)
 End Sub
 
 Private Sub Timer1_Timer()
@@ -291,3 +325,7 @@ On Error GoTo Err
 Err:
 End Sub
 
+Private Sub Timer2_Timer()
+  Debug.Print (FPS)
+  FPS = 0
+End Sub
